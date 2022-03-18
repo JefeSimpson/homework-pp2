@@ -4,7 +4,7 @@ Write a Python program that matches a string that has an 'a' followed by zero or
 import re
 
 txt = "abbbabb" 
-pattern = "a{1}.b*"
+pattern = "a{1}b*"
 result = re.search("a.b*", txt) 
 result1 = re.search(pattern, txt)
 if result: 
