@@ -37,7 +37,7 @@ game_background = pygame.image.load('game_background.jpg').convert()
 menu_background = pygame.image.load('menu_background.jpg').convert()
 
 DONDO = pygame.USEREVENT + 1
-pygame.time.set_timer(DONDO, 10000)
+pygame.time.set_timer(DONDO, 5000)
 
 
 class Wall:
@@ -46,7 +46,7 @@ class Wall:
     self.load_wall()
   
   def load_wall(self):
-    with open('Wall.txt', 'r') as f:
+    with open('Wall2.txt', 'r') as f:
       f = f.readlines()
 
     for i, line in enumerate(f):
@@ -143,8 +143,7 @@ while True:
             food_number += 1
             if food_number == 4:
                 Level += 1
-                fps += 2
-                food_number = 0
+                fps += 3
                 
                 
               
@@ -154,7 +153,9 @@ while True:
         if event.type == pygame.QUIT:
             exit()
         if event.type == DONDO:
-            apple = randrange(block, width - block, block), randrange(block, height - block, block)
+            if food_number == 4:
+                apple = randrange(block, width - block, block), randrange(block, height - block, block)
+                food_number = 0
 
      
         
