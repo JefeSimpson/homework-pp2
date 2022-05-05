@@ -1,5 +1,6 @@
 CREATE OR REPLACE PROCEDURE add_new_phonebooks(
-    list_new_phonebooks varchar[ (11) ]
+    new_names [11], 
+	new_phones [11]
 )
 AS $$
 
