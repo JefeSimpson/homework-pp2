@@ -4,10 +4,10 @@ CREATE OR REPLACE PROCEDURE add_new_phonebooks(
 AS $$
 
 BEGIN
-    INSERT INTO phonebook(name, phone)
-    FOR new_name, new_phone in list_new_phonebooks LOOP
-    VALUES(new_name, new_phone)
-    END LOOP;
+        FOR cnt in 1..11 LOOP
+			INSERT INTO phonebook(name, phone)
+			VALUES(new_names[cnt], new_phones[cnt]);
+		END LOOP;
 END;
 LANGUAGE plpgsql;
 

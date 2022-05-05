@@ -4,10 +4,18 @@ CREATE OR REPLACE PROCEDURE add_new_phonebook(
 )
 AS $$
 
+#variable_conflict use_column
 BEGIN
-    INSERT INTO phonebook(name, phone) 
-    VALUES(new_name, new_phone);
+    IF EXISTS (SELECT name, phone FROM phonebook where new_name = name) THEN
+        UPDATE phonebook 
+        SET name = new_name, phone = new_phone 
+        WHERE name = new_name;
+    ELSE
+        INSERT INTO phonebook(name, phone) 
+        VALUES(new_name, new_phone);
+    END IF;
+            
+END;
 
-END; 
 $$
 LANGUAGE plpgsql;

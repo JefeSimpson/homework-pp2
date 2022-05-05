@@ -3,12 +3,12 @@ CREATE OR REPLACE FUNCTION get_phonebook_option(n integer)
 AS
 $$
 #variable_conflict use_column
-DECLARE
-    f record;
 BEGIN
     RETURN QUERY
-    FOR f in select * FROM phonebook ORDER BY name limit n LOOP
-    END LOOP;
+	SELECT name, phone
+		FROM phonebook
+		ORDER BY name
+		LIMIT n OFFSET 2;
 END;
 $$
 LANGUAGE plpgsql;
